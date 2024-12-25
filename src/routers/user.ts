@@ -63,7 +63,9 @@ userRouter.post("/jobs", async (req: Request, res: Response) => {
 
 
 userRouter.get("/profiles", (req: Request, res: Response) => {
-    
+    res.json({
+        msg:"In progress"
+    })
 })
 
 
