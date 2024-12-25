@@ -3,9 +3,9 @@ import mongoose, { Schema, model } from "mongoose";
 const jobSchema = new Schema({
     job_id: { type: String, unique: true },
     link: { type: String, unique: true },
-    company_name: { type: String },
+    company: { type: String },
     title : {type: String},
-    location: { type: [String],default:[] },
+    location: { type: String },
     skills: { type: [String], default: [] },
     description: { type: [String], default: [] },
     experience : {type : Number, default : 0}

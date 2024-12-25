@@ -30,24 +30,23 @@ userRouter.post("/jobs", async (req: Request, res: Response) => {
 
         let filter: Job = {};
 
-        // Conditionally add fields to filter based on presence in the request body
         if (req.body.location) {
             filter.location = req.body.location;
         }
 
         if (req.body.skills && req.body.skills.length > 0) {
-            filter.skills = { $in: req.body.skills };  // MongoDB $in operator
+            filter.skills = { $in: req.body.skills };  
         }
 
         if (req.body.description && req.body.description.length > 0) {
-            filter.description = { $in: req.body.description };  // MongoDB $in operator
+            filter.description = { $in: req.body.description }; 
         }
 
         if (req.body.experience) {
             filter.experience = req.body.experience;
         }
 
-        const jobs = await jobModel.find()
+        const jobs = await jobModel.find(filter);
 
         res.status(200).json({
             jobs: jobs

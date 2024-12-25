@@ -12,7 +12,7 @@ app.use("/user", userRouter);
 
 async function main(port: number) {
     app.listen(port);
-    await mongoose.connect(process.env.DATABASE as string);
+    await mongoose.connect(process.env.database as string);
     console.log(`Backend Running at port ${port} and Database connected`);
 }
 
