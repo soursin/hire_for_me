@@ -21,7 +21,7 @@ class Linkedin:
         self.driver = webdriver.Firefox()
         self.driver.maximize_window()
         self.wait = WebDriverWait(self.driver, 10)
-        self.jobs=[]
+        self.job=[]
 
     def login(self):
         self.driver.get(c.PAGE_URL)
@@ -68,15 +68,15 @@ class Linkedin:
                 "location":job_location.text,
                 "description":list((job_details.text).split("\n"))
             }
-            self.jobs.append(data)
+            self.job.append(data)
             time.sleep(10)
         
     def addJobs(self):
-        for data in self.jobs:
+        for data in self.job:
             existing_job = collection.find_one({"job_id": data["job_id"]})
-            if existing_job!=None:
+            if existing_job==None:
                 insert_data = collection.insert_one(data)
-
+            
 
 
 user = Linkedin()
@@ -84,4 +84,5 @@ user.login()
 time.sleep(5)
 user.jobs(locate="Bangalore",subtitle="Software Engineer")
 time.sleep(5)
+user.addJobs()
 
